@@ -1,15 +1,56 @@
-import React, { useState, useEffect } from 'react';
-import "../Css/Login.css"
+import React from 'react';
 
-function Login() {
-    // use effect to decide 
+
+
+const login = props => {
+
+    const { email, setEmail, password, setPassword, handleLogin, handleSignUp, hasAccount, setHasAccount, emailError, passwordError } = props;
+
     return (
-        <div>
-            This is login page handle all the login and redirect to requeired pages 
-            faculty
-            club heads
-        </div>
+        <section>
+
+            <div className="container">
+
+                <div className="leftside"></div>
+
+                <div className="rightside">
+                    <label>Username:</label>
+                    <input
+                        type="text"
+                        autoFocus
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <p className="errorMsg">{emailError}</p>
+
+                    <label>Password:</label>
+                    <input
+                        type="password"
+                        required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <p className="errorMsg">{passwordError}</p>
+
+                    <div className="btnContainer">
+                        {hasAccount ? (
+                            <>
+                                <button onClick={handleLogin}>Sign In</button>
+                                <p>Don't have an account ? <span onClick={() => setHasAccount(!hasAccount)}> Sign up</span></p>
+                            </>
+                        ) : (
+                            <>
+                                <button onClick={handleSignUp}>Sign Up</button>
+                                <p>Already have an account?<span onClick={() => setHasAccount(!hasAccount)}>Sign in</span></p>
+                            </>
+                        )}
+                    </div>
+
+                </div>
+            </div>
+        </section>
     )
 }
 
-export default Login
+export default login;
