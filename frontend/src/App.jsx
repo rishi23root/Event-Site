@@ -1,19 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import './Css/App.css';
-import './Css/Login.css';
-import { BrowserRouter, Route, Switch } from "react-router-dom"
+import React from 'react';
+import {
+  Route,
+  Switch,
+  useLocation
+} from "react-router-dom"
 import Home from './Pages/Home';
 import Login from './Pages/Login';
+import Dashboard from './Pages/Dashboard';
+import { AnimatePresence } from "framer-motion"
 
-function App() {
+import './Css/App.css';
+
+const App = () => {
+  const location = useLocation()
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/Login" component={Login} />
-        {/* <Route path="/fullpost" component={Fullpost} /> */}
-      </Switch>
-    </BrowserRouter>
+      <AnimatePresence>
+        <Switch location={location} key={location.pathname}>
+          <Route exact path="/" component={Home} />
+          <Route path="/Login" component={Login} />
+          <Route path="/Dashboard" component={Dashboard} />
+          {/* <Route path="/fullpost" component={Fullpost} /> */}
+        </Switch>
+      </AnimatePresence>
   )
 }
 

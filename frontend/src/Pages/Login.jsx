@@ -1,56 +1,142 @@
 import React from 'react';
+import "../Css/Login.css";
+
+import { useHistory } from "react-router-dom";
+
+import firebase from '../config/firebase';
+import { motion } from "framer-motion"
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
 
 
+const Login = () => {
+    const History = useHistory();
 
-const login = props => {
+    function loginDatabase(email, password, sendbtn) {
+        const loginPromise = new Promise((resolve, reject) => {
+            sendbtn.disabled = true;
+            firebase.auth().signInWithEmailAndPassword(
+                email,
+                password)
+                .then((userCredential) => {
+                    toast.success("Login Successfull 😎")
+                    resolve(userCredential.user.bc.email)
+                    History.push("/Dashboard");
+                    // window.history.pushState({}, "", "/Dashboard")
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    sendbtn.disabled = false;
+                    if (errorCode) {
+                        reject(`${errorCode.split("/")[1]}`)
+                        // reject(`${errorCode}\n - ${errorMessage}`)
+                    }
+                    else {
+                        reject(`Error - ${errorMessage}`)
+                    }
+                });
+        });
 
-    const { email, setEmail, password, setPassword, handleLogin, handleSignUp, hasAccount, setHasAccount, emailError, passwordError } = props;
+        toast.promise(
+            loginPromise,
+            {
+                pending: 'Processing Your Request 😊',
+                success: {
+                    render({ data }) {
+                        return `Hello ${data.split("@")[0]} 😃`
+                    },
+                    // other options
+                    theme: "dark",
+                },
+                error: {
+                    render({ data }) {
+                        return `😥 ${data}`
+                    },
+                    theme: "dark",
+                    icon: "❌"
+                }
+            }
+        )
+    }
+    const handleLogin = (e) => {
+        e.preventDefault()
+        console.log("Login request Processing");
+        const email = e.target[0].value;
+        const password = e.target[1].value;
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3})*(\.\w{2})+$/.test(email)) {
+            if (password.trim().length < 6) {
+                toast.error("Password must have atleast 6 charactors")
+            } else {
+                // authentication of user
+                loginDatabase(email, password, document.getElementById("submit"));
+            }
 
+        } else {
+            toast.error("Email is Not Valid - 'example@galgotiasuniversity.edu.in'")
+        }
+
+
+    }
     return (
-        <section>
+        <motion.section
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+                ease: "easeOut",
+                duration: 0.25
+            }}
+            exit={{
+                opacity: 0,
+                y: 300
+            }}
+            key="hi"
+        >
+            <div id="container" className="container">
+                <div className="leftside">
+                    <div className="imageCointainer">
+                        <img src="/TechnoJam.png" alt="Image" className="imageItself" />
+                    </div>
+                </div>
 
-            <div className="container">
-
-                <div className="leftside"></div>
-
-                <div className="rightside">
-                    <label>Username:</label>
+                <form className="rightside" onSubmit={handleLogin}>
+                    <h1 className="heading">
+                        Event Portal
+                    </h1>
+                    <label>Official Email :</label>
                     <input
-                        type="text"
+                        type="email"
+                        name="userMail"
                         autoFocus
                         required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
                     />
-                    <p className="errorMsg">{emailError}</p>
 
-                    <label>Password:</label>
+                    <label>Password :</label>
                     <input
                         type="password"
+                        name="userPassword"
                         required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
                     />
-                    <p className="errorMsg">{passwordError}</p>
 
                     <div className="btnContainer">
-                        {hasAccount ? (
-                            <>
-                                <button onClick={handleLogin}>Sign In</button>
-                                <p>Don't have an account ? <span onClick={() => setHasAccount(!hasAccount)}> Sign up</span></p>
-                            </>
-                        ) : (
-                            <>
-                                <button onClick={handleSignUp}>Sign Up</button>
-                                <p>Already have an account?<span onClick={() => setHasAccount(!hasAccount)}>Sign in</span></p>
-                            </>
-                        )}
+                        <button id="submit" type="submit" >
+                            Sign In
+                        </button>
+                        {/* <p>
+                            Don't have an account ? 
+                            <span>
+                                <Link to="/Signin">
+                                    Sign up
+                                </Link>
+                            </span>
+                        </p> */}
                     </div>
-
-                </div>
+                </form>
             </div>
-        </section>
+        </motion.section>
     )
 }
 
-export default login;
+export default Login;
