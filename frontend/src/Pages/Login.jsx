@@ -82,11 +82,20 @@ const Login = () => {
     }
     return (
         <motion.section
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ 
+                opacity: 0, 
+                x: -500 
+            }}
+            animate={{ 
+                opacity: 1, 
+                x: 0 
+            }}
             transition={{
-                ease: "easeOut",
-                duration: 0.25
+                duration: 0.3,
+                type: "spring", 
+                damping: 10,
+                mass: 1,
+                stiffness: 100
             }}
             exit={{
                 opacity: 0,
