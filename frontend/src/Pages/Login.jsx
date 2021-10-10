@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "../Css/Login.css";
 
 import { useHistory } from "react-router-dom";
@@ -13,6 +13,16 @@ toast.configure()
 
 const Login = () => {
     const History = useHistory();
+
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(user => {
+            // console.log(user);  
+            if (user !== null) {
+                toast.error("Logout 😐 first to login again !!")
+                History.push("/Dashboard")
+            }
+        })
+    }, [])
 
     function loginDatabase(email, password, sendbtn) {
         const loginPromise = new Promise((resolve, reject) => {
@@ -61,12 +71,13 @@ const Login = () => {
             }
         )
     }
+
     const handleLogin = (e) => {
         e.preventDefault()
         console.log("Login request Processing");
         const email = e.target[0].value;
         const password = e.target[1].value;
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3})*(\.\w{2})+$/.test(email)) {
+        if (/^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+([.]\w{2,3}){2}$/.test(email)) {
             if (password.trim().length < 6) {
                 toast.error("Password must have atleast 6 charactors")
             } else {
@@ -80,19 +91,20 @@ const Login = () => {
 
 
     }
+
     return (
         <motion.section
-            initial={{ 
-                opacity: 0, 
-                x: -500 
+            initial={{
+                opacity: 0,
+                x: -500
             }}
-            animate={{ 
-                opacity: 1, 
-                x: 0 
+            animate={{
+                opacity: 1,
+                x: 0
             }}
             transition={{
                 duration: 0.3,
-                type: "spring", 
+                type: "spring",
                 damping: 10,
                 mass: 1,
                 stiffness: 100
