@@ -11,6 +11,24 @@ function Dashboard() {
             // show model to request 
             // with allowed to set time and date if not clashing 
             // then post the request in for confimation from the server side
+        // for the dashboard
+
+        
+    // useEffect(() => {
+    //     firebase.auth().onAuthStateChanged(user => {
+    //         if (user === null) {
+    //             History.push('/Login')
+    //             return
+    //         }
+    //     })
+    // }, [])
+
+    // logout btn 
+    // firebase.auth().signOut().then(() => {
+    //     // Sign-out successful.
+    // }).catch((error) => {
+    //     // An error happened.
+    // });
     return (
         <div>
             Dashboard
