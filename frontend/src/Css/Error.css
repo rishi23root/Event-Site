@@ -1,0 +1,57 @@
+.page_404 {
+  background: #fff;
+  font-family: "Arvo", serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.cointainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 2px solid black; */
+}
+
+.text404{
+    font-size: 6em;
+    align-self: flex-start  ;
+    margin-left: 4vw;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.imageGIF {
+  max-width: 800px;
+  max-height: 55vh;
+  height: 400px;
+  overflow:hidden ;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link_404 {
+  color: #fff !important;
+  background: #39ac31;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 4em;
+  padding: 10px;
+}
+
+.contant_box_404 > *{
+    /* font-size: 4em; */
+    margin-bottom: 10px;
+}
+
+h3{
+    font-size: 2em;
+}
+P{
+    font-size: 1.2em;
+}
