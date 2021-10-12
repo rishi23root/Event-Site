@@ -10,6 +10,7 @@ import Dashboard from './Pages/Dashboard';
 import Error404 from './Pages/Error404';
 import { AnimatePresence } from "framer-motion"
 
+
 import './Css/App.css';
 
 const App = () => {

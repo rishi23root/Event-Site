@@ -1,0 +1,20 @@
+* {
+	padding: 0%;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.previousevent {
+	width: 50%;
+	line-height: 2em;
+	overflow: scroll;
+	max-width: 50%;
+	max-height: 50rem;
+	padding: 70px;
+}
+.heading {
+	justify-content: center;
+}
+h3 {
+	justify-content: center;
+}

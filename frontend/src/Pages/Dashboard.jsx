@@ -1,9 +1,11 @@
 import React from 'react'
+import Header from '../Components/Header';
+import Container from '../Components/Container'
 
 function Dashboard() {
     // conditional rendering on of use student or faculty 
     // # faculty
-        // 1. new Request (not yet review with a tag on it )
+    // 1. new Request (not yet review with a tag on it )
     // # student
         // old Events by this personal 
         // faded if already passed time 
@@ -37,5 +39,4 @@ function Dashboard() {
         </div>
     )
 }
-
-export default Dashboard;  
+export default Dashboard;
