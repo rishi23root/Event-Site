@@ -9,7 +9,7 @@ export default function Container() {
     return (
         <div className="previousevent">
 
-            <h3 >Previous Events</h3>
+            <h2 >Previous Events</h2>
 
             <h3>Today</h3>
             <div className="events">
