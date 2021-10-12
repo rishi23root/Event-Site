@@ -1,2 +1,47 @@
-* {
+body {
+	margin: 0;
+	padding: 0;
+}
+.Navbar {
+	background-color: rgba(235, 233, 255, 0.37);
+	width: 100%;
+	height: 80px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 40px;
+}
+.logo img {
+	position: absolute;
+	margin-left: 0;
+	left: 1rem;
+	top: 5px;
+	width: 5rem;
+}
+.Searchbar {
+	display: flex;
+	position: absolute;
+	justify-content: center;
+	align-items: center;
+	padding: 1%;
+}
+.Searchbar input {
+	margin-top: 10px;
+	width: 400px;
+	height: 20px;
+	color: black;
+	font-size: 20px;
+}
+.Searchbar button {
+	height: 3rem;
+	width: 5rem;
+}
+.logout {
+	width: 150px;
+	height: 35px;
+	position: absolute;
+	right: 0;
+	margin-right: 2rem;
+	background-color: rgb(120, 203, 241);
+	border-radius: 5%;
 }
