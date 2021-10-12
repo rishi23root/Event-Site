@@ -7,15 +7,15 @@ function Dashboard() {
     // # faculty
     // 1. new Request (not yet review with a tag on it )
     // # student
-        // old Events by this personal 
-        // faded if already passed time 
-        // button for new event 
-            // show model to request 
-            // with allowed to set time and date if not clashing 
-            // then post the request in for confimation from the server side
-        // for the dashboard
+    // old Events by this personal 
+    // faded if already passed time 
+    // button for new event 
+    // show model to request 
+    // with allowed to set time and date if not clashing 
+    // then post the request in for confimation from the server side
+    // for the dashboard
 
-        
+
     // useEffect(() => {
     //     firebase.auth().onAuthStateChanged(user => {
     //         if (user === null) {
@@ -33,9 +33,8 @@ function Dashboard() {
     // });
     return (
         <div>
-            Dashboard
-            to all 
-            new Request from the user 
+            <Header />
+            <Container />
         </div>
     )
 }
