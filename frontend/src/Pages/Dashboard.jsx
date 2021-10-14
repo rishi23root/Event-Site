@@ -32,7 +32,7 @@ function Dashboard() {
     //     // An error happened.
     // });
     return (
-        <div>
+        <div >
             <Header />
             <Container />
         </div>
