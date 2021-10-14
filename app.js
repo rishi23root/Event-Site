@@ -52,19 +52,6 @@ app.get('/confirmTheEvent', (req, res) => {
 
 
 
-
-//The 404 Route final error pages ################
-app.route('*')
-    .get((req, res) => {
-        console.log('404 page open');
-        res.status(404).send(`<h1>Page not found 404 </h1>`);
-    })
-    .post((req, res) => {
-        console.log('404 page open');
-        res.status(404).send(`<h1>Page not found 404 </h1>`);
-    })
-
-
 app.listen(port, () => {
-    console.log(`server is listening on http://192.168.0.1:${port}`)
+    console.log(`server is listening on http://localhost:${port}`)
 })
