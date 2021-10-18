@@ -20,6 +20,9 @@ const router = require("express").Router();
 
 // add api rooute then jse 
 
+// email for the mails and update the cookies for the user
+
+// jwt cookie auth for security and all
 
 router.get('/', (req, res) => {
     res.send("this is the way")
