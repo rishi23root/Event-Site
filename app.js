@@ -7,15 +7,12 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 require('dotenv').config()
 
-
-console.log(process.env.NODE_ENV)
-
 // just for testing 
+console.log(process.env.NODE_ENV)
 app.use((req, res, next) => {
     console.log("url - ", req.url, "\tIp -", req.ip)
     next()
 });
-
 
 // ############ middlewares ################
 app.locals.basedir = __dirname;
@@ -28,10 +25,8 @@ app.use(cookieParser());
 //             ? undefined
 //             : false
 // }));
-
 app.use("/api/", require("./api/api"));
 // ############ ############ ################
-
 
 // if in the production 
 if (process.env.NODE_ENV == "production") {
@@ -40,7 +35,6 @@ if (process.env.NODE_ENV == "production") {
         res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
     })
 }
-
 
 app.listen(port, () => {
     console.log(`server is listening on http://localhost:${port}`)
