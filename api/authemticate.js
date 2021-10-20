@@ -1,6 +1,4 @@
 const { v4: uuidv4 } = require('uuid');
-const cookieParser = require('cookie-parser');
-
 
 // aser cookies auth 
 // and timestant update with server update
@@ -9,11 +7,17 @@ const cookieParser = require('cookie-parser');
     // cookie 
     // authentication code
 
+
+// create cookies to the user
+
+
 const checkCookie = (req, res, next) => {
     // cookies authenticaiton and passing to the next step if not 
     const { authorization } = req.headers;
     if (!authorization) {
-        return res.status(401).json({ error: "you must be logged in" });
+        res.status(401);
+        res.json({ error: "you must be logged in" });
+        return 
     }
     
     const token = authorization.replace("Bearer ", "");
@@ -21,7 +25,7 @@ const checkCookie = (req, res, next) => {
 
 
 const checkAuth = (req,res,next) =>{
-
+    
 }
 
 
