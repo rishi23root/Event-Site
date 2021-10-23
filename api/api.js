@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const {errorHandler,ErrorConstructor} = require('../middleware/errorHandler')
 
-
 // handle all the data for the animaton
 
 
