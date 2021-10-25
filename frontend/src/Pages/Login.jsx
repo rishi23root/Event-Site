@@ -13,15 +13,24 @@ toast.configure()
 
 const Login = () => {
     const History = useHistory();
-
-    useEffect(() => {
-        firebase.auth().onAuthStateChanged(user => {
-            // console.log(user);  
-            if (user !== null) {
-                toast.error("Logout 😐 first to login again !!")
-                History.push("/Dashboard")
-            }
+    const checkLogedinUser = () => {
+        return new Promise((resolve, reject) => {
+            firebase.auth().onAuthStateChanged(user => {
+                // console.log(user);  
+                if (user !== null) {
+                    resolve(user)
+                } else {
+                    reject(user)
+                }
+            })
         })
+    }
+    useEffect(() => {
+        checkLogedinUser()
+            .then(() => {
+                toast.error("First Logout, to login again !!")
+                History.push("/Dashboard")
+            })
     }, [])
 
     function loginDatabase(email, password, sendbtn) {
@@ -34,7 +43,6 @@ const Login = () => {
                     toast.success("Login Successfull 😎")
                     resolve(userCredential.user.bc.email)
                     History.push("/Dashboard");
-                    // window.history.pushState({}, "", "/Dashboard")
                 })
                 .catch((error) => {
                     var errorCode = error.code;
@@ -89,7 +97,6 @@ const Login = () => {
             toast.error("Email is Not Valid - 'example@galgotiasuniversity.edu.in'")
         }
 
-
     }
 
     return (
@@ -130,6 +137,7 @@ const Login = () => {
                     <input
                         type="email"
                         name="userMail"
+                        autoComplete
                         autoFocus
                         required
                     />
@@ -138,6 +146,7 @@ const Login = () => {
                     <input
                         type="password"
                         name="userPassword"
+                        autoComplete
                         required
                     />
 
