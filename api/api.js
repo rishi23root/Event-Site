@@ -50,11 +50,11 @@ router.get('/confirmTheEvent', (req, res) => {
 
 
 // faculty routes only
-// 1. confirmeby take username and 
+// 1. confirmeby take username and update it in the database
 
 
 
-
+// FINAl error handle 
 router.get('/*', (req, res, next) => {
     // error pages
     next(new ErrorConstructor('Not a valid request !! 😟', 404))
