@@ -8,11 +8,12 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config()
 
 // just for testing 
-console.log(process.env.NODE_ENV)
-app.use((req, res, next) => {
-    console.log("url - ", req.url, "\tIp -", req.ip)
-    next()
-});
+if (process.env.NODE_ENV == 'development') {
+    app.use((req, res, next) => {
+        console.log("url - ", req.url, "\tIp -", req.ip)
+        next()
+    });
+}
 
 // ############ middlewares ################
 app.locals.basedir = __dirname;
@@ -27,6 +28,8 @@ app.use(cookieParser());
 // }));
 app.use("/api/", require("./api/api"));
 // ############ ############ ################
+
+
 
 // if in the production 
 if (process.env.NODE_ENV == "production") {
