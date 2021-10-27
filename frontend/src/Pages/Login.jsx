@@ -43,6 +43,21 @@ const Login = () => {
                     toast.success("Login Successfull 😎")
                     resolve(userCredential.user.bc.email)
                     History.push("/Dashboard");
+                    // console.log(`{newLogin:${atob(userCredential.user.Aa.split('.')[1])} }`);
+                    // make a cookie of the user a userCredential.user.bc.email
+                    
+                    fetch('/api/newLogin', {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "LoginCredential": atob(userCredential.user.Aa.split('.')[1])
+                        },
+                        body: JSON.stringify({'UserEmail':userCredential.user.bc.email})
+                    })
+
+                        // .then(res => res.text())
+                        // .then(console.log)
+                        // .catch(console.log)
                 })
                 .catch((error) => {
                     var errorCode = error.code;
