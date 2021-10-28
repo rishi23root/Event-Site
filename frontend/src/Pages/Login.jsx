@@ -10,27 +10,36 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure()
 
+import { getCookie } from '../other/cookies';
 
 const Login = () => {
     const History = useHistory();
+
     const checkLogedinUser = () => {
         return new Promise((resolve, reject) => {
             firebase.auth().onAuthStateChanged(user => {
-                // console.log(user);  
-                if (user !== null) {
-                    resolve(user)
+                // console.log(user);
+                if (user !== null && getCookie('session')) {
+                    resolve("First Logout, to login again !!")
+                } else if (user !== null && !getCookie('session')) {
+                    // indexedDB.deleteDatabase('firebaseLocalStorageDb')
+                    reject("Session expire, login again plz ")
                 } else {
-                    reject(user)
+                    reject('')
                 }
             })
         })
     }
+
     useEffect(() => {
         checkLogedinUser()
-            .then(() => {
-                toast.error("First Logout, to login again !!")
+            .then(res => {
+                toast.error(res)
                 History.push("/Dashboard")
+            }).catch(err => {
+                err && toast.error(err)
             })
+        // }
     }, [])
 
     function loginDatabase(email, password, sendbtn) {
@@ -40,24 +49,22 @@ const Login = () => {
                 email,
                 password)
                 .then((userCredential) => {
-                    toast.success("Login Successfull 😎")
-                    resolve(userCredential.user.bc.email)
-                    History.push("/Dashboard");
-                    // console.log(`{newLogin:${atob(userCredential.user.Aa.split('.')[1])} }`);
-                    // make a cookie of the user a userCredential.user.bc.email
-                    
                     fetch('/api/newLogin', {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                             "LoginCredential": atob(userCredential.user.Aa.split('.')[1])
                         },
-                        body: JSON.stringify({'UserEmail':userCredential.user.bc.email})
+                        body: JSON.stringify({ 'UserEmail': userCredential.user.bc.email })
                     })
-
-                        // .then(res => res.text())
-                        // .then(console.log)
-                        // .catch(console.log)
+                        .then(res => res.text())
+                        .then(res => {
+                            console.log(res)
+                            toast.success("Login Successfull 😎")
+                            resolve(userCredential.user.bc.email)
+                            History.push("/Dashboard");
+                        })
+                        .catch(console.error)
                 })
                 .catch((error) => {
                     var errorCode = error.code;
@@ -152,7 +159,7 @@ const Login = () => {
                     <input
                         type="email"
                         name="userMail"
-                        autoComplete
+                        autoComplete="on"
                         autoFocus
                         required
                     />
@@ -161,7 +168,7 @@ const Login = () => {
                     <input
                         type="password"
                         name="userPassword"
-                        autoComplete
+                        autoComplete="on"
                         required
                     />
 

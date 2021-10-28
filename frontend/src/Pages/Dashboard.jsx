@@ -1,10 +1,10 @@
-import React,{ useLayoutEffect } from 'react'
+import React, { useLayoutEffect } from 'react'
 import Header from '../Components/Header';
 import Container from '../Components/Container'
 import firebase from '../config/firebase';
 import { useHistory } from "react-router-dom";
 
-
+import { getCookie } from '../other/cookies';
 
 function Dashboard() {
     const History = useHistory();
@@ -23,10 +23,13 @@ function Dashboard() {
 
 
     useLayoutEffect(() => {
+        // console.log(getCookie('session'))
         firebase.auth().onAuthStateChanged(user => {
             if (user === null) {
                 History.push('/Login')
-                return
+            }
+            if (!getCookie('session')) {
+                History.push('/Login')
             }
         })
     }, [])

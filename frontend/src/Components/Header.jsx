@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure()
 
+import {deleteAllCookies} from '../other/cookies';
 
 function Header() {
     const History = useHistory();
@@ -18,6 +19,7 @@ function Header() {
         console.log('logout clicked');
         firebase.auth().signOut().then(() => {
             toast.success('Sign-out successful.')
+            deleteAllCookies()
             History.push('/Login')
         }).catch((error) => {
             toast.error('An error happened, try agian')
