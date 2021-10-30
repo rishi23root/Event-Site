@@ -2,6 +2,10 @@ const router = require("express").Router();
 const { errorHandler, ErrorConstructor } = require('../middleware/errorHandler')
 const { TokenHandler } = require('../api/tokenHandler');
 
+
+
+// user uui is unique
+
 // database field
 // heading-topic
 // sumary
