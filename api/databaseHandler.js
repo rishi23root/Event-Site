@@ -7,6 +7,8 @@ const DBname = {
     venue: 'venue',
     clubNames: 'club'
 }
+
+// minimun days before pushing new request default time 
 const datePadding = 2;
 
 // connection to mongoose
@@ -81,6 +83,7 @@ const EventSchema = mongoose.Schema({
 mongoose.model(DBname.user, userSchema)
 mongoose.model('event', EventSchema)
 
+// need to work on the database linking form the other database and fetch data from there 
 
 // field
 // to make the request for a new event
