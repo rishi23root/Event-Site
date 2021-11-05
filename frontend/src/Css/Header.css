@@ -45,4 +45,5 @@ body {
 	margin-right: 2rem;
 	background-color: rgb(120, 203, 241);
 	border-radius: 10px;
+	cursor: pointer;
 }
