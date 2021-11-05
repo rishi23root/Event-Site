@@ -2,10 +2,10 @@ import React from 'react'
 import "../Css/Container.css"
 
 export default function Container() {
-    const changeBackground = () => {
-        console.log(window.scrollY)
-    }
-    window.addEventListener('scroll', changeBackground)
+    // const changeBackground = () => {
+    //     console.log(window.scrollY)
+    // }
+    // window.addEventListener('scroll', changeBackground)
     return (
         <>
             <div className="container">

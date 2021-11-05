@@ -2,69 +2,43 @@ const express = require('express');
 const path = require('path');
 const helmet = require('helmet')
 const app = express();
+const port = process.env.PORT || 80;
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 require('dotenv').config()
 
-const port = process.env.PORT || 80;
+// just for testing 
+if (process.env.NODE_ENV == 'development') {
+    app.use((req, res, next) => {
+        console.log("url - ", req.url, "\tIp -", req.ip)
+        next()
+    });
+}
 
-// login handler
+// ############ middlewares ################
+app.locals.basedir = __dirname;
+app.use(express.json());
+app.use(cors())
+app.use(cookieParser());
+// app.use(helmet({
+//     contentSecurityPolicy:
+//         (process.env.NODE_ENV === 'production')
+//             ? undefined
+//             : false
+// }));
+app.use("/api/", require("./api/api"));
+// ############ ############ ################
 
-// basic pages ROUTES 
-
-// add api rooute then jse 
 
 
+// if in the production 
 if (process.env.NODE_ENV == "production") {
     app.use(express.static('frontend/build'))
-    app.get("/site/*", (req, res) => {
+    app.get("/*", (req, res) => {
         res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
     })
 }
 
-
-app.get('/', (req, res) => {
-    res.status(200)
-    // res.render('mess.html')
-    // res.sendFile('mess.html')
-    res.sendFile(path.join(__dirname, 'views/mess.html'))
-})
-
-app.get('/newLogin', (req, res) => {
-    res.status(200)
-    // res.render('mess.html')
-    // res.sendFile('mess.html')
-    res.sendFile(path.join(__dirname, 'views//mess.html'))
-})
-
-app.get('/newEventRequest', (req, res) => {
-    res.status(200)
-    // res.render('mess.html')
-    // res.sendFile('mess.html')
-    res.sendFile(path.join(__dirname, 'views//mess.html'))
-})
-
-
-app.get('/confirmTheEvent', (req, res) => {
-    res.status(200)
-    // res.render('mess.html')
-    // res.sendFile('mess.html')
-    res.sendFile(path.join(__dirname, 'views//mess.html'))
-})
-
-
-
-
-//The 404 Route final error pages ################
-app.route('*')
-    .get((req, res) => {
-        console.log('404 page open');
-        res.status(404).send(`<h1>Page not found 404 </h1>`);
-    })
-    .post((req, res) => {
-        console.log('404 page open');
-        res.status(404).send(`<h1>Page not found 404 </h1>`);
-    })
-
-
 app.listen(port, () => {
-    console.log(`server is listening on http://192.168.0.1:${port}`)
+    console.log(`server is listening on http://localhost:${port}`)
 })

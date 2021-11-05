@@ -10,18 +10,36 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure()
 
+import { getCookie } from '../other/cookies';
 
 const Login = () => {
     const History = useHistory();
 
-    useEffect(() => {
-        firebase.auth().onAuthStateChanged(user => {
-            // console.log(user);  
-            if (user !== null) {
-                toast.error("Logout 😐 first to login again !!")
-                History.push("/Dashboard")
-            }
+    const checkLogedinUser = () => {
+        return new Promise((resolve, reject) => {
+            firebase.auth().onAuthStateChanged(user => {
+                // console.log(user);
+                if (user !== null && getCookie('session')) {
+                    resolve("First Logout, to login again !!")
+                } else if (user !== null && !getCookie('session')) {
+                    // indexedDB.deleteDatabase('firebaseLocalStorageDb')
+                    reject("Session expire, login again plz ")
+                } else {
+                    reject('')
+                }
+            })
         })
+    }
+
+    useEffect(() => {
+        checkLogedinUser()
+            .then(res => {
+                toast.error(res)
+                History.push("/Dashboard")
+            }).catch(err => {
+                err && toast.error(err)
+            })
+        // }
     }, [])
 
     function loginDatabase(email, password, sendbtn) {
@@ -31,10 +49,22 @@ const Login = () => {
                 email,
                 password)
                 .then((userCredential) => {
-                    toast.success("Login Successfull 😎")
-                    resolve(userCredential.user.bc.email)
-                    History.push("/Dashboard");
-                    // window.history.pushState({}, "", "/Dashboard")
+                    fetch('/api/newLogin', {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "LoginCredential": atob(userCredential.user.Aa.split('.')[1])
+                        },
+                        body: JSON.stringify({ 'UserEmail': userCredential.user.bc.email })
+                    })
+                        .then(res => res.text())
+                        .then(res => {
+                            console.log(res)
+                            toast.success("Login Successfull 😎")
+                            resolve(userCredential.user.bc.email)
+                            History.push("/Dashboard");
+                        })
+                        .catch(console.error)
                 })
                 .catch((error) => {
                     var errorCode = error.code;
@@ -89,7 +119,6 @@ const Login = () => {
             toast.error("Email is Not Valid - 'example@galgotiasuniversity.edu.in'")
         }
 
-
     }
 
     return (
@@ -130,6 +159,7 @@ const Login = () => {
                     <input
                         type="email"
                         name="userMail"
+                        autoComplete="on"
                         autoFocus
                         required
                     />
@@ -138,6 +168,7 @@ const Login = () => {
                     <input
                         type="password"
                         name="userPassword"
+                        autoComplete="on"
                         required
                     />
 
