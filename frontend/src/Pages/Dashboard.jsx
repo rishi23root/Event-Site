@@ -38,6 +38,7 @@ function Dashboard() {
         <div >
             <Header />
             <Container />
+            <footer />
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import "../Css/Header.css"
 import firebase from '../config/firebase';
+import form from 'react';
 
 import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion"
@@ -10,7 +11,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure()
 
-import {deleteAllCookies} from '../other/cookies';
+import { deleteAllCookies } from '../other/cookies';
 
 function Header() {
     const History = useHistory();
@@ -44,18 +45,17 @@ function Header() {
                 </div>
 
                 <div className="Searchbar">
-                    <input type="text" placeholder="search..... " />
-                    <button type="submit">Search </button>
+                    <input type="text" placeholder="Search...."></input>
                 </div>
-                <div >
-                    <button
-                        className="logout"
-                        onClick={logoutFunc}
-                    >
-                        Logout
-                    </button>
-                </div>
+                
+                <button
+                    className="logout"
+                    onClick={logoutFunc}
+                >
+                    Logout
+                </button>
             </div>
+
         </motion.div>
     )
 }

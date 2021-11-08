@@ -2,49 +2,57 @@
 	padding: 0%;
 	margin: 0;
 }
-.container {
-	box-sizing: border-box;
-	padding: 1rem;
+.whole {
+	overflow-y: scroll;
+	height: 100%;
+	padding: 10px 0 0 0;
+	margin-top: 10px;
+	display: flex;
+	flex-direction: row;
+	position: relative;
+}
+.whole .container {
+	padding: 0%;
+	margin: 2%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 .previousevent {
-	line-height: 2em;
-	overflow: scroll;
-	max-height: 40rem;
-}
-.heading {
 	justify-content: center;
+	padding: 0 0 0 20px;
+	border: 1px solid black;
+	overflow-y: scroll;
 }
-h3 {
+.events {
+	background-color: lightgray;
+	border-radius: 10px;
+}
+.whole .side {
+	padding: 0%;
+	margin: 1%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.upcomingevent {
+	padding: 0%;
+	margin: 0%;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black;
+	overflow-y: scroll;
+}
+.bookevent {
+	display: flex;
 	justify-content: center;
-	text-align: center;
-}
-.side {
-	align-items: center;
+	margin: 94px;
 }
 .newevent {
 	width: 150px;
 	height: 35px;
-	position: absolute;
-	right: 0;
-	margin-right: 2rem;
 	background-color: rgb(120, 203, 241);
 	border-radius: 10px;
 	cursor: pointer;
-}
-.bookevent button {
-	width: 150px;
-	height: 35px;
-	position: absolute;
-	right: 0;
-	margin-right: 2rem;
-	background-color: rgb(120, 203, 241);
-	border-radius: 10px;
-}
-.upcomingevent {
-	padding: 30px;
-	margin: 10px;
-	line-height: 2em;
-	overflow: scroll;
-	max-height: 20rem;
 }
