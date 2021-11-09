@@ -5,6 +5,7 @@ function Footer() {
     return (
         <div className="footer">
             All rights reserved
+            
         </div>
     )
 }

@@ -8,55 +8,55 @@ export default function Container() {
     // window.addEventListener('scroll', changeBackground)
     return (
         <>
-            <div className="container">
-                <div className="previousevent">
-
-                    <h2 >Previous Events</h2>
-
-                    <h3>Today</h3>
-                    <div className="events">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                        alteration in some form, by injected humour, or randomised words which don't look
-                    </div>
-                    <h3>Today</h3>
-                    <div className="events">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                        alteration in some form, by injected humour, or randomised words which don't look
-                    </div>
-                    <h3>Tomorrow</h3>
-                    <div className="events">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                        alteration in some form, by injected humour, or randomised words which don't look
-                    </div>
-                    <h3>Tomorrow</h3>
-                    <div className="events">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                        alteration in some form, by injected humour, or randomised words which don't look
-                    </div>
-                    <h3>Yesturday</h3>
-                    <div className="events">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                        alteration in some form, by injected humour, or randomised words which don't look
-                    </div>
-                    <h3>Yesturday</h3>
-                    <div className="events">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                        alteration in some form, by injected humour, or randomised words which don't look
-                    </div>
-                    <h3>Yesturday</h3>
-                    <div className="events">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                        alteration in some form, by injected humour, or randomised words which don't look
-                    </div>
-                    <h3>Tomorrow</h3>
-                    <div className="events">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                        alteration in some form, by injected humour, or randomised words which don't look
-                    </div>
-                    <h3>Tomorrow</h3>
-                    <div className="events">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered
-                        alteration in some form, by injected humour, or randomised words which don't look
+            <div className="whole">
+                <div className="container">
+                    <h3>Previous Events</h3>
+                    <div className="previousevent">
+                        <h2>Today</h2>
+                        <div className="events">
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                            alteration in some form, by injected humour, or randomised words which don't look
+                        </div>
+                        <h2>Today</h2>
+                        <div className="events">
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                            alteration in some form, by injected humour, or randomised words which don't look
+                        </div>
+                        <h2>Tomorrow</h2>
+                        <div className="events">
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                            alteration in some form, by injected humour, or randomised words which don't look
+                        </div>
+                        <h2>Tomorrow</h2>
+                        <div className="events">
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                            alteration in some form, by injected humour, or randomised words which don't look
+                        </div>
+                        <h2>Yesturday</h2>
+                        <div className="events">
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                            alteration in some form, by injected humour, or randomised words which don't look
+                        </div>
+                        <h2>Yesturday</h2>
+                        <div className="events">
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                            alteration in some form, by injected humour, or randomised words which don't look
+                        </div>
+                        <h2>Yesturday</h2>
+                        <div className="events">
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                            alteration in some form, by injected humour, or randomised words which don't look
+                        </div>
+                        <h2>Tomorrow</h2>
+                        <div className="events">
+                            There are ma    ny variations of passages of Lorem Ipsum available, but the majority have suffered
+                            alteration in some form, by injected humour, or randomised words which don't look
+                        </div>
+                        <h2>Tomorrow</h2>
+                        <div className="events">
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                            alteration in some form, by injected humour, or randomised words which don't look
+                        </div>
                     </div>
                 </div>
                 <div className="side">
@@ -64,25 +64,30 @@ export default function Container() {
                         <button className="newevent"> New Event</button>
                     </div>
 
-
                     <div className="upcomingevent">
-                        <h2>Up Coming Events </h2>
+                        <h3>Up Coming Events </h3>
+
+                        <h2>Technojam</h2>
                         <div className="events">
                             There are many variations of passages of Lorem Ipsum available, but the majority have suffered
                             alteration in some form, by injected humour, or randomised words which don't look
                         </div>
+                        <h2>Technojam</h2>
                         <div className="events">
                             There are many variations of passages of Lorem Ipsum available, but the majority have suffered
                             alteration in some form, by injected humour, or randomised words which don't look
                         </div>
+                        <h2>Technojam</h2>
                         <div className="events">
                             There are many variations of passages of Lorem Ipsum available, but the majority have suffered
                             alteration in some form, by injected humour, or randomised words which don't look
                         </div>
+                        <h2>Technojam</h2>
                         <div className="events">
                             There are many variations of passages of Lorem Ipsum available, but the majority have suffered
                             alteration in some form, by injected humour, or randomised words which don't look
                         </div>
+                        <h2>Technojam</h2>
                         <div className="events">
                             There are many variations of passages of Lorem Ipsum available, but the majority have suffered
                             alteration in some form, by injected humour, or randomised words which don't look

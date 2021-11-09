@@ -10,7 +10,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding-bottom: 40px;
+	overflow: hidden;
 }
 .logo img {
 	position: absolute;
@@ -24,7 +24,8 @@ body {
 	position: relative;
 	justify-content: center;
 	align-items: center;
-	padding-top: 2rem;
+	border: 1px solid black;
+	border-radius: 10px;
 }
 .Searchbar input {
 	margin-top: 10px;
@@ -33,10 +34,7 @@ body {
 	color: black;
 	font-size: 20px;
 }
-.Searchbar button {
-	height: 2rem;
-	width: 5rem;
-}
+
 .logout {
 	width: 150px;
 	height: 35px;
@@ -45,4 +43,5 @@ body {
 	margin-right: 2rem;
 	background-color: rgb(120, 203, 241);
 	border-radius: 10px;
+	cursor: pointer;
 }
